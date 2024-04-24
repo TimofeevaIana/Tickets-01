@@ -62,3 +62,49 @@ def main():
             film.add_show_dates(start_date, end_date)
             films.append(film)
 
+        elif choice == '2':
+            for idx, film in enumerate(films, 1):
+                print(f"{idx}. {film.title}")
+
+            film_choice = int(input("Выберите фильм по номеру: ")) - 1
+            current_film = films[film_choice]
+
+            print("Доступные даты показа:")
+            selected_dates = current_film.display_available_dates()
+
+            date_choice = int(input("Выберите дату по номеру: ")) - 1
+            selected_date = selected_dates[date_choice]
+
+            print("Доступные времена показа:")
+            selected_times = current_film.display_available_times()
+
+            time_choice = input("Выберите время: ")
+
+            print("Выберите место:")
+            available_seats = current_film.display_available_seats()
+            print(available_seats)
+
+            seat_choice = input("Введите название места (например, G2): ")
+
+            # Расчет стоимости билета
+            if int(time_choice.replace(':', '')) <= 1200:
+                ticket_price = 200
+            elif 1201 <= int(time_choice.replace(':', '')) <= 1600:
+                ticket_price = 300
+            else:
+                ticket_price = 400
+
+            print(f"Стоимость билета {ticket_price} рублей.")
+            purchase_choice = input("Напишите 1 для покупки, 0 для отмены: ")
+
+            if purchase_choice == '1':
+                current_film.available_seats[seat_choice] = "Sold"
+                print("Билет успешно продан!")
+            else:
+                print("Операция отменена.")
+
+
+# Запуск основного цикла программы
+if __name__ == "__main__":
+    main()
+
