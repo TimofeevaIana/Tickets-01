@@ -38,8 +38,6 @@ class Film:
     def display_available_seats(self):
         return ' '.join([seat for seat, status in self.available_seats.items() if status == "Available"])
 
-
-# Определение главной функции
 def main():
     films = []
 
@@ -86,7 +84,6 @@ def main():
 
             seat_choice = input("Введите название места (например, G2): ")
 
-            # Расчет стоимости билета
             if int(time_choice.replace(':', '')) <= 1200:
                 ticket_price = 200
             elif 1201 <= int(time_choice.replace(':', '')) <= 1600:
@@ -103,8 +100,6 @@ def main():
             else:
                 print("Операция отменена.")
 
-
-# Запуск основного цикла программы
 if __name__ == "__main__":
     main()
 
