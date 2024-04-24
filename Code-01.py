@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+
+
 class Film:
     def __init__(self, title, start_date, end_date):
         self.title = title
@@ -35,3 +37,28 @@ class Film:
 
     def display_available_seats(self):
         return ' '.join([seat for seat, status in self.available_seats.items() if status == "Available"])
+
+
+# Определение главной функции
+def main():
+    films = []
+
+    while True:
+        print("Добро пожаловать в информационно-справочную систему для продажи билетов в кинотеатре!")
+        print("Добавить новый фильм - нажмите 1")
+        print("Выбрать фильм для продажи билета - нажмите 2")
+
+        choice = input()
+
+        if choice == '1':
+            title = input("Введите название фильма: ")
+            start_date = datetime.strptime(input("Введите дату начала показа фильма (гггг-мм-дд): "), "%Y-%m-%d")
+            end_date = datetime.strptime(input("Введите дату окончания показа фильма (гггг-мм-дд): "), "%Y-%m-%d")
+            film = Film(title, start_date, end_date)
+
+            times = input("Введите доступные времена показа через запятую (например, 10:00,14:30): ")
+            film.add_show_times(times.split(','))
+
+            film.add_show_dates(start_date, end_date)
+            films.append(film)
+
