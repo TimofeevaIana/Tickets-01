@@ -72,9 +72,6 @@ def main():
             date_choice = int(input("Выберите дату по номеру: ")) - 1
             selected_date = selected_dates[date_choice]
 
-            print("Доступные времена показа:")
-            selected_times = current_film.display_available_times()
-
             time_choice = input("Выберите время: ")
 
             print("Выберите место:")
